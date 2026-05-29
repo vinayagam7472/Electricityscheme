@@ -59,6 +59,43 @@
   --shadow-xl: 0 35px 70px -15px rgba(0, 0, 0, 0.7);
 }
 
+/* Color Theme Overrides */
+[data-color="purple"] {
+  --primary: #7c3aed;
+  --primary-glow: rgba(124, 58, 237, 0.1);
+}
+[data-theme="dark"] [data-color="purple"] {
+  --primary: #8b5cf6;
+  --primary-glow: rgba(139, 92, 246, 0.15);
+}
+
+[data-color="blue"] {
+  --primary: #2563eb;
+  --primary-glow: rgba(37, 99, 235, 0.1);
+}
+[data-theme="dark"] [data-color="blue"] {
+  --primary: #3b82f6;
+  --primary-glow: rgba(59, 130, 246, 0.15);
+}
+
+[data-color="green"] {
+  --primary: #059669;
+  --primary-glow: rgba(5, 150, 105, 0.1);
+}
+[data-theme="dark"] [data-color="green"] {
+  --primary: #10b981;
+  --primary-glow: rgba(16, 185, 129, 0.15);
+}
+
+[data-color="amber"] {
+  --primary: #d97706;
+  --primary-glow: rgba(217, 119, 6, 0.1);
+}
+[data-theme="dark"] [data-color="amber"] {
+  --primary: #f59e0b;
+  --primary-glow: rgba(245, 158, 11, 0.15);
+}
+
 /* Floating Decorative Blobs */
 body::before {
   content: '';

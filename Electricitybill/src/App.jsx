@@ -193,9 +193,18 @@ function App() {
   // Detail Modal state (for showing a specific family's slab breakdown)
   const [selectedFamilyDetail, setSelectedFamilyDetail] = useState(null);
 
+  const [colorTheme, setColorTheme] = useState(() => {
+    return localStorage.getItem('colorTheme') || 'purple';
+  });
+
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-color', colorTheme);
+    localStorage.setItem('colorTheme', colorTheme);
+  }, [colorTheme]);
 
   useEffect(() => {
     localStorage.setItem('families', JSON.stringify(families));
@@ -332,6 +341,33 @@ function App() {
             </div>
           </div>
           <div className="header-actions">
+            <div className="color-selector" style={{ display: 'flex', gap: '8px', alignItems: 'center', marginRight: '12px' }}>
+              <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontWeight: 600 }}>Theme:</span>
+              {[
+                { name: 'purple', value: '#8b5cf6', label: 'Violet' },
+                { name: 'blue', value: '#3b82f6', label: 'Classic Blue' },
+                { name: 'green', value: '#10b981', label: 'Emerald' },
+                { name: 'amber', value: '#f59e0b', label: 'Amber' }
+              ].map((color) => (
+                <button
+                  key={color.name}
+                  onClick={() => setColorTheme(color.name)}
+                  style={{
+                    width: '18px',
+                    height: '18px',
+                    borderRadius: '50%',
+                    backgroundColor: color.value,
+                    border: colorTheme === color.name ? '2px solid var(--text-primary)' : '1px solid var(--card-border)',
+                    cursor: 'pointer',
+                    padding: 0,
+                    boxShadow: colorTheme === color.name ? '0 0 6px var(--primary)' : 'none',
+                    transition: 'all 0.2s',
+                    outline: 'none'
+                  }}
+                  title={color.label}
+                />
+              ))}
+            </div>
             <button 
               className="btn btn-secondary btn-sm"
               onClick={toggleTheme}
